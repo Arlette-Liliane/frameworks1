@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+
+  RewriteBase /
+	Options +FollowSymLinks
+	RewriteEngine On
+	# Send request via index.php
+	RewriteCond $1 !^(index\.php|resources|robots\.txt|static) [NC]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	#RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
